@@ -1,4 +1,4 @@
-from curses import wrapper, curs_set
+from curses import wrapper, curs_set, KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN
 import time
 import random
 
@@ -17,20 +17,15 @@ class Snake():
 
     def turn(self, arrow):
 
-        ARROW_DOWN = 258
-        ARROW_UP = 259
-        ARROW_LEFT = 260
-        ARROW_RIGHT = 261
-
         if self.direction == "RIGHT" or self.direction == "LEFT":
-            if arrow == ARROW_DOWN:
+            if arrow == KEY_DOWN:
                 self.direction = "DOWN"
-            elif arrow == ARROW_UP:
+            elif arrow == KEY_UP:
                 self.direction = "UP"
         elif self.direction == "DOWN" or self.direction == "UP":
-            if arrow == ARROW_LEFT:
+            if arrow == KEY_LEFT:
                 self.direction = "LEFT"
-            elif arrow == ARROW_RIGHT:
+            elif arrow == KEY_RIGHT:
                 self.direction = "RIGHT"
     
     def move(self):
