@@ -7,34 +7,40 @@ class Snake():
         self.scr = scr
         self.length = 4
         self.path = [(5,8),(5,7),(5,6),(5,5)]
-        self.direction = 0
+        self.direction = "RIGHT"
 
     def embiggen(self):
         self.length += 1
     
     def keep_size(self):
         self.path = self.path[0:self.length]
-    
+
     def turn(self, arrow):
-        if self.direction == 0 or self.direction == 2:
-            if arrow == 258:
-                self.direction = 1
-            elif arrow == 259:
-                self.direction = 3
-        elif self.direction == 1 or self.direction == 3:
-            if arrow == 260:
-                self.direction = 2
-            elif arrow == 261:
-                self.direction = 0
+
+        ARROW_DOWN = 258
+        ARROW_UP = 259
+        ARROW_LEFT = 260
+        ARROW_RIGHT = 261
+
+        if self.direction == "RIGHT" or self.direction == "LEFT":
+            if arrow == ARROW_DOWN:
+                self.direction = "DOWN"
+            elif arrow == ARROW_UP:
+                self.direction = "UP"
+        elif self.direction == "DOWN" or self.direction == "UP":
+            if arrow == ARROW_LEFT:
+                self.direction = "LEFT"
+            elif arrow == ARROW_RIGHT:
+                self.direction = "RIGHT"
     
     def move(self):
-        if self.direction == 0:
+        if self.direction == "RIGHT":
             self.path = [(self.path[0][0], self.path[0][1] + 1)] + self.path
-        if self.direction == 1:
+        if self.direction == "DOWN":
             self.path = [(self.path[0][0] + 1, self.path[0][1])] + self.path
-        if self.direction == 2:
+        if self.direction == "LEFT":
             self.path = [(self.path[0][0], self.path[0][1] - 1)] + self.path
-        if self.direction == 3:
+        if self.direction == "UP":
             self.path = [(self.path[0][0] - 1, self.path[0][1])] + self.path
 
 
