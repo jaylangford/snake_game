@@ -61,6 +61,8 @@ def main(stdscr):
 
     while True:
         stdscr.nodelay(True)
+        
+        # Get input
         c = stdscr.getch()
 
         time.sleep(.1)
@@ -68,10 +70,16 @@ def main(stdscr):
             snake.turn(c)
 
         snake.move()
+        
+        # Make the snake longer if it touches the ball.
+        # Move the ball to a new random location
+
         if snake.path[0] == ball.position:
             snake.embiggen()
             ball.new_position(snake)
 
+
+        # Update snake path
         snake.keep_size()
 
         stdscr.clear()
@@ -79,6 +87,9 @@ def main(stdscr):
             stdscr.addstr(y, x, u'\u25AE')
         
         stdscr.addstr(ball.position[0], ball.position[1], u'\u25AE')
+        
+        # Stop if the snake hits itself
+
         if len(snake.path) != len(set(snake.path)):
             break
 
